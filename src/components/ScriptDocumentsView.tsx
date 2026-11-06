@@ -103,8 +103,15 @@ export const ScriptDocumentsView: React.FC<ScriptDocumentsViewProps> = ({
   };
 
   const handleDownload = (script: ScriptDocument) => {
-    // Direct endpoint download from server
-    if (script.hasFile || script.fileData) {
+    // Direct endpoint download from server or client base64
+    if (script.fileData) {
+      const a = document.createElement('a');
+      a.href = script.fileData;
+      a.download = script.fileName || `${script.title}.docx`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    } else if (script.hasFile) {
       const downloadUrl = `/api/scripts/${script.id}/download`;
       const a = document.createElement('a');
       a.href = downloadUrl;

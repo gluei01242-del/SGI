@@ -428,19 +428,11 @@ export default function App() {
         const data = await res.json();
         setAppState((prev) => ({ ...prev, scripts: data.scripts }));
         return true;
-      } else {
-        const errJson = await res.json().catch(() => ({}));
-        throw new Error(errJson.error || '上傳失敗');
       }
-    } catch (e) {
-      console.error('Failed to upload script:', e);
-      // Remove temp on failure
-      setAppState((prev) => ({
-        ...prev,
-        scripts: (prev.scripts || []).filter((s) => s.id !== tempScript.id),
-      }));
-      throw e;
+    } catch {
+      // Offline / GitHub Pages static host fallback: keep local state
     }
+    return true;
   };
 
   const handleDeleteScript = async (id: string) => {
