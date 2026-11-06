@@ -1,0 +1,6 @@
+{
+  "name": "創價學會總會 司儀小組協同練習平台",
+  "description": "專為創價學會總會司儀巧甯、馥伊與司儀保母念嘉打造的溫馨練習排程平台。支援11/3至12/13甘特圖空檔計算、總會12/13 15:30倒數、下次練習提醒與暖心留言板。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
